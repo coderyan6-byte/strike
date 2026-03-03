@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strike — Talk & Hangout</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            background: #ffffff;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(180, 0, 0, 0.9);
+            backdrop-filter: blur(6px);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            animation: fadeDown 1s ease forwards;
+        }
+
+            nav h1 {
+                margin: 0;
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
+
+            nav a {
+                color: white;
+                margin-left: 20px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: opacity 0.3s;
+            }
+
+                nav a:hover {
+                    opacity: 0.7;
+                }
+
+        /* Fullscreen Hero */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg, #ff1a1a, #b40000);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+            .hero h2 {
+                font-size: 70px;
+                margin: 0;
+                font-weight: 900;
+                letter-spacing: 2px;
+                animation: slideUp 1.2s ease forwards;
+            }
+
+            .hero p {
+                font-size: 24px;
+                margin-top: 20px;
+                max-width: 700px;
+                animation: slideUp 1.6s ease forwards;
+            }
+
+            .hero button {
+                margin-top: 40px;
+                background: white;
+                color: #b40000;
+                border: none;
+                padding: 16px 32px;
+                font-size: 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 700;
+                transition: transform 0.3s, background 0.3s;
+                animation: fadeIn 2s ease forwards;
+            }
+
+                .hero button:hover {
+                    background: #f2f2f2;
+                    transform: scale(1.05);
+                }
+
+
+        /* Promo Section */
+        .promo {
+            padding: 80px 40px;
+            display: flex;
+            justify-content: center;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        .promo-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1100px;
+            flex-wrap: wrap;
+        }
+
+        .promo-img {
+            width: 420px;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: slideUp 1.2s ease forwards;
+        }
+
+        .promo-text h2 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: 800;
+            color: #b40000;
+            animation: slideUp 1.4s ease forwards;
+        }
+
+        .promo-text p {
+            font-size: 22px;
+            margin-top: 10px;
+            max-width: 400px;
+            animation: slideUp 1.6s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .promo-content {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+
+        /* Features Section */
+        .features {
+            padding: 80px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .feature-box {
+            width: 300px;
+            padding: 30px;
+            border-radius: 12px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .feature-box:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+
+            .feature-box h3 {
+                color: #b40000;
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+        /* FAQ Header */
+        .faq-header {
+            background: #b40000;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+            .faq-header h2 {
+                margin: 0;
+                font-size: 42px;
+                font-weight: 800;
+            }
+
+        /* FAQ Section */
+        .faq {
+            background: white;
+            padding: 60px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease forwards;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        /* FAQ Buttons */
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 22px;
+            font-weight: 600;
+            padding: 15px 0;
+            cursor: pointer;
+            color: #b40000;
+            transition: color 0.3s;
+        }
+
+            .faq-question:hover {
+                color: #ff4d4d;
+            }
+
+        /* FAQ Answers */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+        }
+
+            .faq-answer p {
+                margin: 10px 0 0 0;
+                font-size: 18px;
+            }
+
+        /* Expanded State */
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+            footer a {
+                color: #ff4d4d;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h1>Strike</h1>
+        <div>
+            <a href="https://sites.google.com/view/striketalk/chat">login</a>
+            <a href="Privacy">Privacy</a>
+            <a href="Terms">Terms</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h2>Strike</h2>
+        <p>Talk & Hangout with your friends.</p>
+        <button onclick="window.location.href='/app'">Get Started</button>
+    </section>
+
+    <section class="promo">
+        <div class="promo-content">
+            <img src="Chatroom.png" alt="Strike Promo" class="promo-img">
+
+            <div class="promo-text">
+                <h2>It's on us.</h2>
+                <p>Chat with people using our service.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="features" class="features">
+        <div class="feature-box">
+            <h3>Chat Rooms</h3>
+            <p>Create or join rooms instantly and talk with your friends in real time.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Polls</h3>
+            <p>Create and run community polls.</p>
+        </div>
+    </section>
+
+    <section class="faq-header">
+        <h2>Frequently Asked Questions</h2>
+    </section>
+
+    <section class="faq">
+        <div class="faq-item">
+            <button class="faq-question">Is it 100% free?</button>
+            <div class="faq-answer">
+                <p>Yes, it's 100% free. You don’t need to pay for anything.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">How do I log in?</button>
+            <div class="faq-answer">
+                <p>You just need a Google account and log in with Google.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach(item => {
+            const question = item.querySelector(".faq-question");
+
+            question.addEventListener("click", () => {
+                item.classList.toggle("active");
+            });
+        });
+    </script>
+
+
+    <footer>
+        <p>© 2026 Strike. All rights reserved.</p>
+        <p><a href="Privacy">Privacy Policy</a> • <a href="Terms">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>
